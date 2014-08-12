@@ -4,7 +4,11 @@
 
 ### CLI usage
 
-#### Examples
+By default json-stream-format pretty prints a json stream.  If you want to use a more specific format you can use the
+`--format` (`-f`) parameter and specify the format.  Place object keys to include inside double curly `{{something}}`
+brackets.
+
+#### Example
 
 ```` bash
 cat test/fixtures/example.log | json-stream-format -f '{{time|date("h:m:s")|blue}}: {{msg|green}}'
