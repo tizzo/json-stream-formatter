@@ -1,0 +1,50 @@
+#! /usr/bin/env node
+
+var yargs = require('yargs')
+var es = require('event-stream');
+var esf = require('..');
+var parse = require('../lib/parse');
+
+yargs
+    .usage('Format event-streams')
+    .example('format', 'cat foo.log | json-stream-format --format="{{date|blue}} {{msg|red}}')
+    .example('pretty-print', 'cat foo.log | json-stream-format --pretty')
+    .alias('pretty', 'p')
+    .describe('pretty', 'Pretty print will colorize and print your logs, displaying all fields.')
+    .alias('format', 'f')
+    .describe('format', 'Format a stream of JSON using a simple syntax of {{ fieldName | filter }}.')
+    .alias('help', 'h')
+    .describe('help', 'Print this help screen')
+;
+var argv = yargs.argv
+
+if (argv.h) {
+  yargs.showHelp();
+  process.exit(0);
+}
+
+if (argv.p && argv.f) {
+  console.log('');
+  console.log('ERROR: The \'pretty\' and \'format\' options cannot be used together.');
+  console.log('');
+  process.exit(1);
+}
+if (process.argv.length === 2 || argv.p) {
+  process.stdin
+    .pipe(es.split())
+    .pipe(es.parse())
+    .pipe(esf.prettyPrint())
+    .pipe(process.stdout)
+  ;
+}
+
+if (argv.f) {
+  process.stdin
+    .pipe(es.split())
+    .pipe(es.parse())
+    .pipe(esf.format(argv.f))
+    .pipe(process.stdout)
+  ;
+}
+
+/* vim: set syntax=javascript : */

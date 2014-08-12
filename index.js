@@ -1,12 +1,15 @@
 'use strict';
 
+var util = require('util');
+
 var Twig = require('twig');
 var through = require('through');
 
 // Attach chalk colors.
 var chalkTwig = require('chalk-twig-filter');
 
-module.exports = function stringStream(format, options) {
+module.exports = {};
+module.exports.format = function stringStream(format, options) {
 
   chalkTwig(Twig);
 
@@ -15,9 +18,21 @@ module.exports = function stringStream(format, options) {
   });
 
   var processor = function(data) {
-    this.queue(template.render(data));
+    this.queue(template.render(data) + "\n\r");
   };
 
+  return through(processor);
+};
+
+module.exports.prettyPrint = function() {
+  var processor = function(data) {
+    var options = {
+      showHidden: true,
+      depth: null,
+      colors: true,
+    };
+    this.queue(util.inspect(data, options) + "\n");
+  };
   return through(processor);
 };
 
