@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
+  "bin": {
+    "json-stream-formatter": "./bin/json-stream-formatter"
+  },
   "author": "Howard Tyson",
   "license": "GPL2+",
   "repository": "https://github.com/tizzo/json-stream-formatter.git",
