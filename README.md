@@ -43,7 +43,7 @@ process.stdin
 ## Format sytnax
 
 The formatter utilizes [twig.js](https://www.npmjs.org/package/twig) for foratting
-the json event messages.  Avilable filters can be found in the twig.js
+the json event messages.  Available filters can be found in the twig.js
 [implementation notes](https://github.com/justjohn/twig.js/wiki/Implementation-Notes).
 
 ## Installation
