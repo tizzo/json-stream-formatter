@@ -1,13 +1,13 @@
 {
   "name": "json-stream-formatter",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A command line tool and through stream for formatting streams of JSON objects into a text stream.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "bin": {
-    "json-stream-formatter": "./bin/json-stream-formatter"
+    "json-stream-formatter": "./bin/json-stream-format"
   },
   "author": "Howard Tyson",
   "license": "GPL2+",

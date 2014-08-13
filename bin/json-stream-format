@@ -13,12 +13,12 @@ yargs
     .describe('pretty', 'Pretty print will colorize and print your logs, displaying all fields.')
     .alias('format', 'f')
     .describe('format', 'Format a stream of JSON using a simple syntax of {{ fieldName | filter }}.')
-    .alias('help', 'h')
     .describe('help', 'Print this help screen')
+    .alias('help', 'h')
 ;
 var argv = yargs.argv
 
-if (argv.h) {
+if (argv.help) {
   yargs.showHelp();
   process.exit(0);
 }
