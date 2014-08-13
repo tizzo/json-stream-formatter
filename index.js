@@ -6,7 +6,7 @@ var Twig = require('twig');
 var through = require('through');
 
 // Attach chalk colors.
-var chalkTwig = require('chalk-twig-filter');
+var chalkTwig = require('chalk-twig-filters');
 
 module.exports = {};
 module.exports.format = function stringStream(format, options) {
