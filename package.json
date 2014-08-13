@@ -10,7 +10,7 @@
   "license": "GPL2+",
   "repository": "https://github.com/tizzo/json-stream-formatter.git",
   "dependencies": {
-    "chalk-twig-filters": "0.0.0",
+    "chalk-twig-filters": "0.0.2",
     "event-stream": "^3.1.7",
     "through": "^2.3.4",
     "twig": "^0.7.2",
