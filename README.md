@@ -24,7 +24,7 @@ var es = require('event-stream');
 process.stdin
   .pipe(es.split())
   .pipe(es.parse())
-  .pipe(jsf.format('{{time|dat("d/m/y h:m:s")|blue}}: {{msg}}'))
+  .pipe(jsf.format('{{time|date("d/m/y h:m:s")|blue}}: {{msg}}'))
   .pipe(process.stdout);
 ````
 
