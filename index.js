@@ -31,7 +31,7 @@ module.exports.prettyPrint = function() {
       depth: null,
       colors: true,
     };
-    this.queue(util.inspect(data, options) + "\n");
+    this.queue(util.inspect(data, options) + "\n\r");
   };
   return through(processor);
 };
