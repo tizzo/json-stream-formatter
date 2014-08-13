@@ -23,14 +23,14 @@ if (argv.h) {
   process.exit(0);
 }
 
-if (argv.p && argv.f) {
+if (argv.pretty && argv.format) {
   console.log('');
   console.log('ERROR: The \'pretty\' and \'format\' options cannot be used together.');
   console.log('');
   process.exit(1);
 }
 
-if (process.argv.length === 2 || argv.p) {
+if (process.argv.length === 2 || argv.pretty) {
   process.stdin
     .pipe(es.split())
     .pipe(parse())
@@ -39,11 +39,11 @@ if (process.argv.length === 2 || argv.p) {
   ;
 }
 
-if (argv.f) {
+if (argv.format) {
   process.stdin
     .pipe(es.split())
     .pipe(parse())
-    .pipe(esf.format(argv.f))
+    .pipe(esf.format(argv.format))
     .pipe(process.stdout)
   ;
 }
