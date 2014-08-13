@@ -1,5 +1,6 @@
 var should = require('should');
 var es = require('event-stream');
+var util = require('util');
 
 var esf = require('..');
 
@@ -27,8 +28,13 @@ describe('json format stream', function() {
       var stream = es.readArray(events)
         .pipe(esf.prettyPrint())
         .pipe(es.writeArray(function(error, data) {
-          data[0].should.equal('{ foo: \u001b[32m\'some value\'\u001b[39m,\n  bar: \u001b[32m\'some other value\'\u001b[39m }\n\r');
-          data[1].should.equal('{ foo: \u001b[32m\'Another thing\'\u001b[39m,\n  bar: \u001b[32m\'Some more still\'\u001b[39m }\n\r');
+        var options = {
+            showHidden: true,
+            depth: null,
+            colors: true,
+          };
+          data[0].should.equal(util.inspect(events[0], options) + '\n\r');
+          data[1].should.equal(util.inspect(events[1], options) + '\n\r');
         }));
     });
   });
