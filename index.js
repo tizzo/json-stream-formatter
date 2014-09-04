@@ -18,7 +18,7 @@ module.exports.format = function stringStream(format, options) {
   });
 
   var processor = function(data) {
-    this.queue(template.render(data) + "\n\r");
+    this.queue(template.render(data) + "\n");
   };
 
   return through(processor);
@@ -31,7 +31,7 @@ module.exports.prettyPrint = function() {
       depth: null,
       colors: true,
     };
-    this.queue(util.inspect(data, options) + "\n\r");
+    this.queue(util.inspect(data, options) + "\n");
   };
   return through(processor);
 };

@@ -14,7 +14,7 @@ describe('cli', function() {
     fs.createReadStream(path.join(__dirname, 'fixtures', 'example2.log'))
       .pipe(child.stdin);
     child.stdout
-      .pipe(es.split('\n\r'))
+      .pipe(es.split())
       .pipe(es.writeArray(function(error, data) {
         data = data.map(function(item) { return item.toString('utf8')});
         data[0].should.equal('First');

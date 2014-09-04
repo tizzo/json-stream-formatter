@@ -14,8 +14,8 @@ describe('json format stream', function() {
       var stream = es.readArray(events)
         .pipe(esf.format('Foo: {{ foo }}, Bar: {{ bar }}'))
         .pipe(es.writeArray(function(error, data) {
-          data[0].should.equal("Foo: some value, Bar: some other value\n\r");
-          data[1].should.equal("Foo: Another thing, Bar: Some more still\n\r");
+          data[0].should.equal("Foo: some value, Bar: some other value\n");
+          data[1].should.equal("Foo: Another thing, Bar: Some more still\n");
         }));
     });
   });
@@ -33,8 +33,8 @@ describe('json format stream', function() {
             depth: null,
             colors: true,
           };
-          data[0].should.equal(util.inspect(events[0], options) + '\n\r');
-          data[1].should.equal(util.inspect(events[1], options) + '\n\r');
+          data[0].should.equal(util.inspect(events[0], options) + '\n');
+          data[1].should.equal(util.inspect(events[1], options) + '\n');
         }));
     });
   });
