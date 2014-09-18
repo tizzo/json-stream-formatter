@@ -12,7 +12,13 @@ brackets.
 #### Example
 
 ```` bash
-cat test/fixtures/example.log | json-stream-format -f '{{time|date("h:m:s")|blue}}: {{msg|green}}'
+cat test/fixtures/example.log | json-stream-format --format '{{time|date("h:m:s")|blue}}: {{msg|green}}'
+````
+
+You can also leave off the format, non-parameter arguments will be used as formats by default.
+
+```` bash
+cat test/fixtures/example.log | json-stream-format '{{time|date("h:m:s")|blue}}: {{msg|green}}'
 ````
 
 ### Node.js usage
