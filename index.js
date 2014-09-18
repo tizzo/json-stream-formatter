@@ -11,7 +11,7 @@ var chalkTwig = require('chalk-twig-filters');
 module.exports = {};
 module.exports.format = function stringStream(format, options) {
 
-  chalkTwig(Twig);
+  chalkTwig(Twig, options);
 
   var template = Twig.twig({
     data: format,

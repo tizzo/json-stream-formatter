@@ -38,12 +38,12 @@ if (process.argv.length === 2 || argv.pretty) {
     .pipe(process.stdout)
   ;
 }
-
-if (argv.format) {
+if (argv.format || argv._.length) {
+  var format = argv.format || argv._.join('');
   process.stdin
     .pipe(es.split())
     .pipe(parse())
-    .pipe(esf.format(argv.format))
+    .pipe(esf.format(format))
     .pipe(process.stdout)
   ;
 }
