@@ -1,5 +1,6 @@
 # JSON Event Stream Formatter
 [![Build Status](https://travis-ci.org/tizzo/json-stream-formatter.svg?branch=master)](https://travis-ci.org/tizzo/json-stream-formatter)
+[![Coverage Status](https://img.shields.io/coveralls/tizzo/json-stream-formatter.svg)](https://coveralls.io/r/tizzo/json-stream-formatter?branch=master)
 
 ## Usage
 
