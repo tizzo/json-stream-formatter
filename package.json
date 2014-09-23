@@ -1,6 +1,6 @@
 {
   "name": "json-stream-formatter",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A command line tool and through stream for formatting streams of JSON objects into a text stream.",
   "main": "index.js",
   "scripts": {

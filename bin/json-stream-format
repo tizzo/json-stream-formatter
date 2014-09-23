@@ -39,7 +39,7 @@ if (process.argv.length === 2 || argv.pretty) {
   ;
 }
 if (argv.format || argv._.length) {
-  var format = argv.format || argv._.join('');
+  var format = argv.format || argv._.join(' ');
   process.stdin
     .pipe(es.split())
     .pipe(parse())
