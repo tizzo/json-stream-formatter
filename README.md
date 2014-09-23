@@ -52,7 +52,7 @@ process.stdin
 
 The formatter utilizes [twig.js](https://www.npmjs.org/package/twig) for foratting
 the json event messages.  Available filters can be found in the twig.js
-[implementation notes](https://github.com/justjohn/twig.js/wiki/Implementation-Notes).
+[implementation notes](https://github.com/justjohn/twig.js/wiki/Implementation-Notes).  In addition [chalk-twig-filters](https://www.npmjs.org/package/chalk-twig-filters) are added to provide all of the [chalk](https://www.npmjs.org/package/chalk) colors as twig filters.  These are the color filters used in the examples above.
 
 ## Installation
 
