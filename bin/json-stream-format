@@ -2,20 +2,24 @@
 
 var yargs = require('yargs')
 var es = require('event-stream');
+var split2 = require('split2');
 var esf = require('..');
 var parse = require('../lib/parse');
 
 yargs
-    .usage('Format event-streams')
-    .example('format', 'cat foo.log | json-stream-format --format="{{date|blue}} {{msg|red}}')
-    .example('pretty-print', 'cat foo.log | json-stream-format --pretty')
-    .alias('pretty', 'p')
-    .describe('pretty', 'Pretty print will colorize and print your logs, displaying all fields.')
-    .alias('format', 'f')
-    .describe('format', 'Format a stream of JSON using a simple syntax of {{ fieldName | filter }}.')
-    .describe('help', 'Print this help screen')
-    .alias('help', 'h')
-;
+  .usage('Format event-streams')
+  .example('format', 'cat foo.log | json-stream-format --format="{{date|blue}} {{msg|red}}')
+  .example('pretty-print', 'cat foo.log | json-stream-format --pretty')
+  .alias('pretty', 'p')
+  .describe('pretty', 'Pretty print will colorize and print your logs, displaying all fields.')
+  .alias('format', 'f')
+  .describe('format', 'Format a stream of JSON using a simple syntax of {{ fieldName | filter }}.')
+  .describe('include-invalid', 'Allow invalid JSON lines to be printed rather than suppressed')
+  .alias('include-invalid', 'i')
+  .default('include-invalid', false)
+  .describe('help', 'Print this help screen')
+  .alias('help', 'h');
+
 var argv = yargs.argv
 
 if (argv.help) {
@@ -30,10 +34,14 @@ if (argv.pretty && argv.format) {
   process.exit(1);
 }
 
+var parseOptions = {
+  passthrough: argv['include-invalid'],
+};
+
 if (process.argv.length === 2 || argv.pretty) {
   process.stdin
-    .pipe(es.split())
-    .pipe(parse())
+    .pipe(split2())
+    .pipe(parse(parseOptions))
     .pipe(esf.prettyPrint())
     .pipe(process.stdout)
   ;
@@ -41,8 +49,8 @@ if (process.argv.length === 2 || argv.pretty) {
 if (argv.format || argv._.length) {
   var format = argv.format || argv._.join(' ');
   process.stdin
-    .pipe(es.split())
-    .pipe(parse())
+    .pipe(split2())
+    .pipe(parse(parseOptions))
     .pipe(esf.format(format))
     .pipe(process.stdout)
   ;
