@@ -1,7 +1,6 @@
 #! /usr/bin/env node
 
 var yargs = require('yargs')
-var es = require('event-stream');
 var split2 = require('split2');
 var esf = require('..');
 var parse = require('../lib/parse');
